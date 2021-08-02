@@ -9,22 +9,6 @@ var masterString = ""    // masterString is used to mix and match upper,lower,nu
 var pickedPassword = ""
 var length = ""
 
-
-// Write password to the #password input
-function writePassword() {
-  var password = generatePassword();
-  password = pickedPassword
-  var passwordText = document.querySelector("#password");
-
-  passwordText.value = password;
-  document.querySelector("#password").textContent= pickedPassword
-  console.log(writePassword)
-
-}
-
-// Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
-
 //function to create random password
 function generatePassword () {
   var pickedPassword = "" ; 
@@ -43,12 +27,13 @@ function generatePassword () {
   var hasNumChar = confirm ("Would you like to include numbers?");
   var hasSpecial = confirm ("Would you like to include special characters?");
 
-  //alert if the user does nto select characters
+  //alert if the user does not select characters
   if(!hasUpChar&&!hasLowcChar&&!hasNumChar&&!hasSpecial) {
     alert("You must choose include at least 1 character type.");
     return generatePassword()
   }
   //gererate password based on what the user picked. 
+  //checks if they selected everything. 
   if(hasUpChar && hasLowcChar && hasNumChar && specialChar){
   masterString += upperChar + num + lowerChar + specialChar;
   }
@@ -96,7 +81,11 @@ function writePassword () {
   pickedPassword = generatePassword();
   var passwordText = document.querySelector("#password");
   passwordText.value = pickedPassword;
+  return pickedPassword;
 
 
 }
+// Add event listener to generate button
+generateBtn.addEventListener("click", writePassword);
+
   
